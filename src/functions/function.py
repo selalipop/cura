@@ -3,6 +3,9 @@ from restack_ai.function import function
 from dataclasses import dataclass
 import asyncio
 from vapi import AssistantOverrides, AsyncVapi, CreateCustomerDto
+import weave
+weave.init("cura-weave")
+
 
 @dataclass
 class InputParams:
@@ -21,6 +24,7 @@ async def goodbye(input: InputParams) -> str:
 
 
 @function.defn(name="patient_check_in")
+@weave.op()
 async def patient_check_in(input: InputParams) -> str:
     print(input)
     print(os.getenv("VAPI_API_KEY"))

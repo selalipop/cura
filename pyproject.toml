@@ -16,6 +16,8 @@ streamlit = "^1.39.0"
 pypdf = "^5.1.0"
 vapi-server-sdk = "^0.1.0"
 phonenumbers = "^8.13.48"
+filelock = "^3.16.1"
+weave = "^0.51.18"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"  # Optional: Add if you want to include tests in your example
