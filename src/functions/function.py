@@ -1,7 +1,8 @@
 import os
 from restack_ai.function import function
 from dataclasses import dataclass
-
+import asyncio
+from vapi import AssistantOverrides, AsyncVapi, CreateCustomerDto
 
 @dataclass
 class InputParams:
@@ -16,9 +17,6 @@ async def goodbye(input: InputParams) -> str:
     return f"Goodbye, {input.name}!"
 
 
-import asyncio
-
-from vapi import AssistantOverrides, AsyncVapi, CreateCustomerDto
 
 
 
@@ -41,7 +39,7 @@ async def patient_check_in(input: InputParams) -> str:
                 "patient_name": input.patient_name,
                 "patient_phone": input.patient_phone,
                 "patient_plan": input.patient_plan,
-                "days_since_start": input.days_since_start,
+                "days_since_start": input.days_since_start or 1,
             }
         ),
     )
@@ -50,4 +48,4 @@ async def patient_check_in(input: InputParams) -> str:
         if call_status.status == "ended":
             break
         await asyncio.sleep(1)
-    return f"Hello, {input.name}!"
+    return {"status": "success"}

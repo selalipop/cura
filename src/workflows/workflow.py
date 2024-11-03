@@ -7,9 +7,9 @@ from src.functions.function import patient_check_in, goodbye, InputParams
 class GreetingWorkflow:
     @workflow.run
     async def run(self, input : InputParams):
-        for i in range(10):
+        for i in range(1):
             input.days_since_start = i
-            await workflow.step(patient_check_in, input, start_to_close_timeout=timedelta(seconds=600))
+            await workflow.step(patient_check_in, input, start_to_close_timeout=timedelta(seconds=9999))
     async def goodbye(self):
         return await workflow.step(goodbye, InputParams("world"), start_to_close_timeout=timedelta(seconds=10))
 
